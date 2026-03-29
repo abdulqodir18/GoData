@@ -1,0 +1,111 @@
+{
+  "file_name": "dirty_sales.csv",
+  "export_timestamp": "2026-03-29T17:50:00",
+  "dataset_shape_before": {
+    "rows": 1530,
+    "columns": 10
+  },
+  "dataset_shape_after": {
+    "rows": 1500,
+    "columns": 12
+  },
+  "operations_count": 5,
+  "operations": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-03-29T17:45:00",
+      "operation": "trim_whitespace",
+      "affected_columns": [
+        "region",
+        "product_category",
+        "customer_segment",
+        "sales_rep"
+      ],
+      "parameters": {
+        "columns": [
+          "region",
+          "product_category",
+          "customer_segment",
+          "sales_rep"
+        ]
+      },
+      "rows_before": 1530,
+      "rows_after": 1530
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-03-29T17:46:00",
+      "operation": "convert_to_numeric",
+      "affected_columns": [
+        "unit_price",
+        "discount_pct"
+      ],
+      "parameters": {
+        "strip_characters": true
+      },
+      "rows_before": 1530,
+      "rows_after": 1530
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-03-29T17:47:00",
+      "operation": "fill_missing",
+      "affected_columns": [
+        "units_sold",
+        "unit_price",
+        "revenue",
+        "region"
+      ],
+      "parameters": {
+        "method": "mixed_manual_example",
+        "details": {
+          "units_sold": "median",
+          "unit_price": "median",
+          "revenue": "median",
+          "region": "Unknown"
+        }
+      },
+      "rows_before": 1530,
+      "rows_after": 1530
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-03-29T17:48:00",
+      "operation": "drop_duplicates",
+      "affected_columns": [
+        "order_id"
+      ],
+      "parameters": {
+        "subset": [
+          "order_id"
+        ],
+        "keep": "first",
+        "rows_removed": 30
+      },
+      "rows_before": 1530,
+      "rows_after": 1500
+    },
+    {
+      "step_id": 5,
+      "timestamp": "2026-03-29T17:49:00",
+      "operation": "scale_columns",
+      "affected_columns": [
+        "revenue"
+      ],
+      "parameters": {
+        "method": "minmax"
+      },
+      "rows_before": 1500,
+      "rows_after": 1500
+    }
+  ],
+  "validation_summary": [
+    {
+      "rule_name": "revenue_non_null",
+      "rule_type": "non_null",
+      "column": "revenue",
+      "timestamp": "2026-03-29T17:50:30",
+      "violation_count": 0
+    }
+  ]
+}

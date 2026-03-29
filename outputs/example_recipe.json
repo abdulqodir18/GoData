@@ -1,0 +1,57 @@
+[
+  {
+    "step_id": 1,
+    "operation": "trim_whitespace",
+    "columns": [
+      "region",
+      "product_category",
+      "customer_segment",
+      "sales_rep"
+    ],
+    "parameters": {}
+  },
+  {
+    "step_id": 2,
+    "operation": "convert_to_numeric",
+    "columns": [
+      "unit_price",
+      "discount_pct"
+    ],
+    "parameters": {
+      "strip_characters": true
+    }
+  },
+  {
+    "step_id": 3,
+    "operation": "fill_missing",
+    "columns": [
+      "units_sold",
+      "unit_price",
+      "revenue",
+      "region"
+    ],
+    "parameters": {
+      "method": "median_and_constant"
+    }
+  },
+  {
+    "step_id": 4,
+    "operation": "drop_duplicates",
+    "columns": [
+      "order_id"
+    ],
+    "parameters": {
+      "keep": "first"
+    }
+  },
+  {
+    "step_id": 5,
+    "operation": "scale_columns",
+    "columns": [
+      "revenue"
+    ],
+    "parameters": {
+      "method": "minmax"
+    }
+  }
+]
