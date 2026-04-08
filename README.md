@@ -64,3 +64,8 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+## Streamlit URL
+```
+https://dwv21945.streamlit.app/
+```

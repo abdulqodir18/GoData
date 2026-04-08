@@ -99,7 +99,7 @@ def find_duplicate_rows(dataframe: pd.DataFrame, subset: list[str] | None = None
         return duplicate_rows
 
     comparison_columns = subset or list(dataframe.columns)
-    group_keys = duplicate_rows[comparison_columns].astype(str).agg(" | ".join, axis=1)
+    group_keys = duplicate_rows[comparison_columns].astype(str).apply(lambda row: " | ".join(row), axis=1)
     duplicate_rows.insert(0, "duplicate_group", pd.factorize(group_keys)[0] + 1)
     return duplicate_rows.sort_values("duplicate_group")
 
